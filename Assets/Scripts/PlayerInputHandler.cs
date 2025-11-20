@@ -43,7 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
     movementAction.canceled += inputInfo => MovementInput = Vector2.zero;
 
     rotationAction.performed += inputInfo => RotationInput = inputInfo.ReadValue<Vector2>();
-    movementAction.canceled += inputInfo => MovementInput = Vector2.zero;
+    rotationAction.canceled += inputInfo => RotationInput = Vector2.zero; // changed movementAction to rotation for rotation issue
 
     jumpAction.performed += inputInfo => JumpTriggered = true;
     jumpAction.canceled += inputInfo => JumpTriggered = false;
