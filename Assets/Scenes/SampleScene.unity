@@ -124,6 +124,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4682265645029222608, guid: 779591504e770074a81cc4fb18177886, type: 3}
   m_PrefabInstance: {fileID: 7166064919108371985}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &46426483 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8057397589082171560, guid: 779591504e770074a81cc4fb18177886, type: 3}
+  m_PrefabInstance: {fileID: 7166064919108371985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &46426484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,16 +138,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 46426480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1ba02c2e7d1878590c0647073bb708, type: 3}
+  m_Script: {fileID: 11500000, guid: 52f0589af846afa44a1e2e21d5b8a678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControls: {fileID: -944628639613478452, guid: 795213ead2cc48d4bb011dfa90f7ab82, type: 3}
-  actionMapName: Player
-  movement: Movement
-  rotation: Rotation
-  jump: Jump
-  sprint: Sprint
-  flashlight: Flashlight
+  inputHandler: {fileID: 1866478754}
+  flashlightLight: {fileID: 46426483}
+  startOn: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
