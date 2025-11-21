@@ -23,8 +23,14 @@ public class FirstPersonController : MonoBehaviour
   private Vector3 currentMovement;
   private float verticalRotation;
   private float CurrentSpeed => walkSpeed * (playerInputHandler.SprintTriggered ? sprintMultiplier : 1);
-  
-  void Start()
+
+  [Header("Hand")]
+  [SerializeField] private Transform hand;
+
+    //public Transform _camera;
+    //public Transform hand;
+
+    void Start()
   {
     Cursor.lockState = CursorLockMode.Locked;
     Cursor.visible = false;
@@ -34,6 +40,11 @@ public class FirstPersonController : MonoBehaviour
   {
     HandleMovement();
     HandleRotation();
+
+    //rotation_x_axis 
+
+    //hand.localRotation = Quaternion.Euler(rotation_x_axis, rotation_y_axis, 0);
+    
   }
 
   private Vector3 CalculateWorldDirection()
@@ -47,7 +58,7 @@ public class FirstPersonController : MonoBehaviour
   {
     if (characterController.isGrounded)
     {
-      currentMovement.y = -0.5f;
+      currentMovement.y = -0.5f;  // to prevent the player from flipping
       if (playerInputHandler.JumpTriggered)
       {
         currentMovement.y = jumpForce;
@@ -78,7 +89,10 @@ public class FirstPersonController : MonoBehaviour
   {
     verticalRotation = Mathf.Clamp(verticalRotation - rotationAmount, -upDownLookRange, upDownLookRange);
     mainCamera.transform.localRotation = Quaternion.Euler(verticalRotation, 0, 0);
-  }
+    
+    hand.localRotation = Quaternion.Euler(verticalRotation, 0, 0); // flashlight sync rotation with camera
+
+    }
 
   private void HandleRotation()
   {

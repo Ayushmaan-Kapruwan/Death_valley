@@ -14,11 +14,14 @@ public class PlayerInputHandler : MonoBehaviour
   [SerializeField] private string rotation = "Rotation";
   [SerializeField] private string jump = "Jump";
   [SerializeField] private string sprint = "Sprint";
+  [SerializeField] private string flashlight = "Flashlight"; //J
 
   private InputAction movementAction;
   private InputAction rotationAction;
   private InputAction jumpAction;
   private InputAction sprintAction;
+  private InputAction flashlightAction;
+  public bool FlashlightTriggered { get; private set; }
 
   public Vector2 MovementInput { get; private set; }
   public Vector2 RotationInput { get; private set; } 
@@ -33,6 +36,7 @@ public class PlayerInputHandler : MonoBehaviour
     rotationAction = mapReference.FindAction(rotation);
     jumpAction = mapReference.FindAction(jump);
     sprintAction = mapReference.FindAction(sprint);
+    flashlightAction = mapReference.FindAction(flashlight);
 
     SubscribeActionValueToInputEvents();
   }
@@ -50,6 +54,9 @@ public class PlayerInputHandler : MonoBehaviour
 
     sprintAction.performed += inputInfo => SprintTriggered = true;
     sprintAction.canceled += inputInfo => SprintTriggered = false;
+
+    flashlightAction.performed += _ => FlashlightTriggered = true;
+    flashlightAction.canceled  += _ => FlashlightTriggered = false;
 
   }
 
