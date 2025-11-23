@@ -18,11 +18,16 @@ public class SanityManager : MonoBehaviour
     [Tooltip("Sanity points per second when draining (base)")]
     public float drainRatePerSecond = 2f;
 
+    [Header("Death & Respawn")]
+    [Tooltip("Delay before respawning after sanity reaches 0")]
+    [SerializeField] private float respawnDelay = 2f;
+
     [Header("References")]
     [SerializeField] private FlashlightController flashlightController; // optional
 
     public bool isUnderLamp = false;
     private Coroutine sanityCoroutine;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -55,6 +60,13 @@ public class SanityManager : MonoBehaviour
         float logTimer = 0f;
         while (true)
         {
+            // Don't update sanity if player is dead
+            if (isDead)
+            {
+                yield return null;
+                continue;
+            }
+
             float delta = Time.deltaTime;
             logTimer += delta;
 
@@ -88,6 +100,12 @@ public class SanityManager : MonoBehaviour
             // snapshot after
             float after = sanitySlider != null ? sanitySlider.value : -1f;
 
+            // Check if sanity reached 0
+            if (after <= 0f && !isDead)
+            {
+                StartCoroutine(HandleDeath());
+            }
+
             // log every 1s to keep console readable, but you can shorten if needed
             if (logTimer >= 1f)
             {
@@ -99,7 +117,36 @@ public class SanityManager : MonoBehaviour
         }
     }
 
+    private IEnumerator HandleDeath()
+    {
+        isDead = true;
+        Debug.Log("Player has lost all sanity!");
 
+        // Optional: Disable player controls during death
+        // You could disable the FirstPersonController here if needed
+
+        // Wait for respawn delay
+        yield return new WaitForSeconds(respawnDelay);
+
+        // Respawn player
+        if (CheckpointManager.Instance != null)
+        {
+            CheckpointManager.Instance.RespawnPlayer();
+        }
+        else
+        {
+            Debug.LogError("CheckpointManager not found! Cannot respawn player.");
+        }
+
+        // Reset sanity
+        if (sanitySlider != null)
+        {
+            sanitySlider.value = fullSanity;
+        }
+
+        isDead = false;
+        Debug.Log("Player respawned with full sanity.");
+    }
 
     /// <summary>
     /// Called by lamppost triggers to set whether player is under lamp.
