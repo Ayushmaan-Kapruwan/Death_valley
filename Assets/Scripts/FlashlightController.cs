@@ -35,12 +35,43 @@ public class FlashlightController : MonoBehaviour
 
     private void ToggleFlashlight()
     {
-        isOn = !isOn;
-        ApplyState();
+        // Use SetState instead of directly modifying isOn
+        // This ensures the lamppost check is always performed
+        SetState(!isOn);
     }
 
     private void ApplyState()
     {
         if (flashlightLight != null) flashlightLight.enabled = isOn;
     }
+
+    // Public control methods
+    public void SetState(bool on)
+    {
+        if (on)
+        {
+            var sm = SanityManager.Instance;
+            if (sm != null && sm.isUnderLamp)
+            {
+                Debug.Log("[FlashlightController] Attempt to turn ON flashlight blocked: player is under a lamppost.");
+                return;
+            }
+        }
+
+        isOn = on;
+        ApplyState();
+    }
+
+    public void TurnOff()
+    {
+        SetState(false);
+    }
+
+    public void TurnOn()
+    {
+        SetState(true);
+    }
+
+    public bool IsOn => isOn;
+
 }
