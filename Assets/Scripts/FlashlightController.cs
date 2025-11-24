@@ -24,18 +24,17 @@ public class FlashlightController : MonoBehaviour
         if (inputHandler != null)
         {
             bool current = inputHandler.FlashlightTriggered;
-            if (current && !lastInputState)
+            if (current && !lastInputState) // So that it's not called everyframe while holding button
             {
                 ToggleFlashlight();
             }
-            lastInputState = current;
+            lastInputState = current; // checks the last frame F input
             return;
         }
     }
 
     private void ToggleFlashlight()
     {
-        // Use SetState instead of directly modifying isOn
         // This ensures the lamppost check is always performed
         SetState(!isOn);
     }
