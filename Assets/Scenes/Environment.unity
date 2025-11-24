@@ -15,11 +15,11 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 2
-  m_FogDensity: 0.009
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_FogDensity: 0.01
+  m_LinearFogStart: 40
+  m_LinearFogEnd: 200
   m_AmbientSkyColor: {r: 0.11547702, g: 0.12442812, b: 0.14150941, a: 1}
   m_AmbientEquatorColor: {r: 0.09723212, g: 0.115135424, b: 0.1792453, a: 1}
   m_AmbientGroundColor: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
@@ -1278,7 +1278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &246651170
 Transform:
   m_ObjectHideFlags: 0
@@ -1640,7 +1640,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &429385342
 Transform:
   m_ObjectHideFlags: 0
@@ -2667,17 +2667,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7188155598278033634, guid: 779591504e770074a81cc4fb18177886, type: 3}
+      propertyPath: inputHandler
+      value: 
+      objectReference: {fileID: 2080262539}
     - target: {fileID: 7706692565591940155, guid: 779591504e770074a81cc4fb18177886, type: 3}
       propertyPath: walkSpeed
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7706692565591940155, guid: 779591504e770074a81cc4fb18177886, type: 3}
       propertyPath: sprintMultiplier
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7706692565591940155, guid: 779591504e770074a81cc4fb18177886, type: 3}
-      propertyPath: gravityMultiplier
-      value: 1.3
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7706692565591940155, guid: 779591504e770074a81cc4fb18177886, type: 3}
       propertyPath: playerInputHandler
@@ -3676,7 +3676,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
