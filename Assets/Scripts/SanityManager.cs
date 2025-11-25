@@ -157,15 +157,6 @@ public class SanityManager : MonoBehaviour
         isUnderLamp = underLamp;
     }
 
-    // Allows other scripts (e.g. lamppost triggers) to force the flashlight off
-    public void ForceFlashlightOff()
-    {
-        if (flashlightController != null)
-        {
-            flashlightController.SetState(false);
-        }
-    }
-
     /// Optional accessor for other scripts
     public float CurrentSanity => sanitySlider != null ? sanitySlider.value : 0f;
 }
