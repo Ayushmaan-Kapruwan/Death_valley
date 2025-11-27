@@ -14,6 +14,11 @@ public class SanityPostFX : MonoBehaviour
     public float lensMin = 0.6f;
     public float lensMax = 1.0f;
 
+    [Header("Audio")]
+    public AudioSource insanityAudio;
+    public float audioMin = 0f;
+    public float audioMax = 0.5f;
+
     [Header("Smoothing")]
     public float smoothSpeed = 5f;
 
@@ -42,6 +47,12 @@ public class SanityPostFX : MonoBehaviour
 
         // how low sanity is (0 = healthy, 1 = insane)
         float t = 1f - (sanity / maxSanity);
+        
+        if (insanityAudio !=null)
+        {
+          float targetVolume = Mathf.Lerp(audioMin, audioMax, t);
+          insanityAudio.volume = Mathf.Lerp(insanityAudio.volume, targetVolume, Time.deltaTime * smoothSpeed);
+        }
 
         // lerp target values
         float targetChromatic = Mathf.Lerp(chromaticMin, chromaticMax, t);
