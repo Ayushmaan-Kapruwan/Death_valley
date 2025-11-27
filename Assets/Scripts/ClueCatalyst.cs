@@ -5,19 +5,9 @@ public class ClueCatalyst : MonoBehaviour
 {
     [SerializeField] private string clue;
     [SerializeField] private GameObject notification;
-    [SerializeField] private KeyCode removeClue = KeyCode.R;
     [SerializeField] private float notificationDuration = 3f;
     private bool clueAdded = false;
     private Coroutine hideNotificationCoroutine;
-
-    private void Update()
-    {
-
-        if (Input.GetKeyDown(removeClue))
-        {
-            CompleteClue();
-        }
-    }
 
     public void CreateClue()
     {
@@ -63,12 +53,4 @@ public class ClueCatalyst : MonoBehaviour
         }
     }
 
-    public void CompleteClue()
-    {
-        if (clue != null && MainManager.mainManager.clueNames.Contains(clue))
-        {
-            MainManager.mainManager.clueNames.Remove(clue);
-            Debug.Log($"Clue removed: {clue}");
-        }
-    }
 }
