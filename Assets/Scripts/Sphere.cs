@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Sphere : MonoBehaviour, IInteractable {
+public class Sphere : MonoBehaviour, IInteractable
+{
     private ClueCatalyst clueCatalyst;
 
     private void Awake()
     {
         clueCatalyst = GetComponent<ClueCatalyst>();
-        
+
         if (clueCatalyst == null)
         {
             Debug.LogError($"[SPHERE] ClueCatalyst component NOT FOUND on {gameObject.name}! Add it in Inspector.", this);
@@ -21,7 +22,7 @@ public class Sphere : MonoBehaviour, IInteractable {
     {
         Debug.Log($"[SPHERE] ===== INTERACT CALLED ON {gameObject.name} =====", this);
         Debug.Log($"[SPHERE] Random number: {Random.Range(0, 100)}");
-        
+
         // Add the clue when interacted with
         if (clueCatalyst != null)
         {

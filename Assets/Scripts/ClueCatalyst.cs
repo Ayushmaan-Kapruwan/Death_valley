@@ -12,7 +12,7 @@ public class ClueCatalyst : MonoBehaviour
 
     private void Update()
     {
-        
+
         if (Input.GetKeyDown(removeClue))
         {
             CompleteClue();
@@ -22,13 +22,13 @@ public class ClueCatalyst : MonoBehaviour
     public void CreateClue()
     {
         Debug.Log($"CreateClue called. Clue: '{clue}', ClueAdded: {clueAdded}");
-        
+
         if (clue != null && !clueAdded)
         {
             clueAdded = !clueAdded;
             MainManager.mainManager.clueNames.Add(clue);
             Debug.Log($"Clue added to MainManager. Total clues: {MainManager.mainManager.clueNames.Count}");
-            
+
             // Print all clues
             foreach (string c in MainManager.mainManager.clueNames)
             {
@@ -43,12 +43,12 @@ public class ClueCatalyst : MonoBehaviour
         if (notification != null)
         {
             notification.SetActive(true);
-            
+
             if (hideNotificationCoroutine != null)
             {
                 StopCoroutine(hideNotificationCoroutine);
             }
-            
+
             hideNotificationCoroutine = StartCoroutine(HideNotificationAfterDelay());
         }
     }
@@ -56,13 +56,13 @@ public class ClueCatalyst : MonoBehaviour
     private IEnumerator HideNotificationAfterDelay()
     {
         yield return new WaitForSeconds(notificationDuration);
-        
+
         if (notification != null)
         {
             notification.SetActive(false);
         }
     }
-    
+
     public void CompleteClue()
     {
         if (clue != null && MainManager.mainManager.clueNames.Contains(clue))

@@ -7,14 +7,14 @@ interface IInteractable
     public void Interact();
 }
 
-public class  Interactor : MonoBehaviour
+public class Interactor : MonoBehaviour
 {
     public Transform InteractorSource;
     public float InteractorRange;
 
     void Start()
     {
-        
+
     }
 
     private void Update()
