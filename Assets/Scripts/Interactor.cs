@@ -11,6 +11,7 @@ public class Interactor : MonoBehaviour
 {
     public Transform InteractorSource;
     public float InteractorRange;
+    public GameObject interactCanvas;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class Interactor : MonoBehaviour
                 if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj))
                 {
                     interactObj.Interact();
+
                 }
             }
         }
