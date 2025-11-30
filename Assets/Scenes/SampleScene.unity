@@ -437,27 +437,14 @@ GameObject:
   - component: {fileID: 1026373028}
   - component: {fileID: 1026373027}
   - component: {fileID: 1026373026}
-  - component: {fileID: 1026373025}
   - component: {fileID: 1026373030}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1026373025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1026373024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3a7c7139bff31f49bb69f447eed8944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1026373026
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -559,10 +546,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be83d7b9f041ae44b3e939f359c5849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clue: You added a sphere
+  clue: Key
   notification: {fileID: 1863849679}
-  removeClue: 114
   notificationDuration: 3
+  customDialogueEventName: 
+  dialogueDelay: 0.5
 --- !u!1 &1242316216
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +563,6 @@ GameObject:
   - component: {fileID: 1242316221}
   - component: {fileID: 1242316220}
   - component: {fileID: 1242316219}
-  - component: {fileID: 1242316218}
   - component: {fileID: 1242316217}
   m_Layer: 0
   m_Name: TestCube
@@ -598,20 +585,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clue: You have added TestCube Clue!
   notification: {fileID: 1863849679}
-  removeClue: 114
   notificationDuration: 3
---- !u!114 &1242316218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1242316216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3a7c7139bff31f49bb69f447eed8944, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  customDialogueEventName: 
+  dialogueDelay: 0.5
 --- !u!65 &1242316219
 BoxCollider:
   m_ObjectHideFlags: 0

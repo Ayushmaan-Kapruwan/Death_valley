@@ -17,6 +17,9 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     private bool dialogueActive = false;
     
+    // Add public property to expose dialogue state
+    public bool IsDialogueActive => dialogueActive;
+    
     void Start()
     {
         sentences = new Queue<string>();
@@ -86,5 +89,12 @@ public class DialogueManager : MonoBehaviour
         dialogueActive = false;
 
         animator.SetBool("IsOpen", false);
+        
+        // Notify DialogueEventListener that dialogue has ended
+        DialogueEventListener listener = FindFirstObjectByType<DialogueEventListener>();
+        if (listener != null)
+        {
+            listener.OnDialogueEnded();
+        }
     }
 }
