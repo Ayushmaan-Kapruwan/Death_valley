@@ -90,3 +90,4 @@ public class ClueCatalyst : MonoBehaviour, IInteractable
         }
     }
 }
+
