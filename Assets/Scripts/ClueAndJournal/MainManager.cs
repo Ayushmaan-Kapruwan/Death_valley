@@ -1,6 +1,6 @@
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class MainManager : MonoBehaviour
 {
@@ -12,9 +12,25 @@ public class MainManager : MonoBehaviour
         if (mainManager != null)
         {
             Destroy(gameObject);
+            return;
         }
 
         mainManager = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    public void HideAfterDelay(GameObject obj, float delay)
+    {
+        StartCoroutine(HideRoutine(obj, delay));
+    }
+
+    private IEnumerator HideRoutine(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (obj != null)
+            obj.SetActive(false);
+    }
 }
+
+
