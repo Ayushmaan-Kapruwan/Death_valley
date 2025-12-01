@@ -31,6 +31,21 @@ public class MainManager : MonoBehaviour
         if (obj != null)
             obj.SetActive(false);
     }
-}
 
+    // DIALOGUE DELAY HANDLER (new)
+    public void TriggerDialogueWithDelay(string eventName, float delay)
+    {
+        StartCoroutine(DialogueRoutine(eventName, delay));
+    }
+
+    private IEnumerator DialogueRoutine(string eventName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (DialogueEventManager.Instance != null)
+        {
+            DialogueEventManager.Instance.TriggerEvent(DialogueEventType.OnClueFound, eventName);
+        }
+    }
+}
 

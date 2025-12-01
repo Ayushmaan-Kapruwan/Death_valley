@@ -13,6 +13,16 @@ public class DoorInteractable : MonoBehaviour, IInteractable
     private Quaternion closedRotation;
     private Quaternion openRotation;
 
+    [Header("Dialogue Settings")]
+    [Tooltip("Dialogue event when the player tries opening a locked door")]
+    [SerializeField] private string lockedDialogueEventName;
+
+    [Tooltip("Dialogue event when the door successfully opens")]
+    [SerializeField] private string openedDialogueEventName;
+
+    [Tooltip("Delay before triggering dialogue")]
+    [SerializeField] private float dialogueDelay = 0.3f;
+
     private void Start()
     {
         closedRotation = transform.localRotation;
@@ -28,14 +38,31 @@ public class DoorInteractable : MonoBehaviour, IInteractable
     public void Interact()
     {
         if (hasInteracted) return;
+
+        // ---------- Locked Door Dialogue ----------
         if (isLocked)
         {
             Debug.Log("Door is locked.");
+
+            if (DialogueEventManager.Instance != null && !string.IsNullOrEmpty(lockedDialogueEventName))
+            {
+                MainManager.mainManager.TriggerDialogueWithDelay(lockedDialogueEventName, dialogueDelay);
+            }
+
             return;
         }
+        // -----------------------------------------
 
+        // Door can be opened
         hasInteracted = true;
         isOpen = true;
+
+        // ---------- Open Door Dialogue ----------
+        if (DialogueEventManager.Instance != null && !string.IsNullOrEmpty(openedDialogueEventName))
+        {
+            MainManager.mainManager.TriggerDialogueWithDelay(openedDialogueEventName, dialogueDelay);
+        }
+        // ----------------------------------------
 
         StartCoroutine(OpenDoor());
     }
